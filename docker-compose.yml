@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  app:
+    container_name: FreshCut
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    env_file: ./.env
+    ports:
+      - 8081:8081
+    depends_on:
+      - postgres
+    restart: always
+
+  postgres:
+    image: postgres:latest
+    container_name: Postgres
+    hostname: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: notes
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    restart: always
+
+volumes:
+  pg-data:
