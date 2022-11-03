@@ -1,5 +1,8 @@
 import { injectable, inject } from "tsyringe";
-import { IUsersRepository, Users } from "../infra/database/entities/User";
+import {
+  IUsersRepository,
+  Users,
+} from "@resources/user/infra/database/entities/User";
 
 interface IRequest {
   name: string;

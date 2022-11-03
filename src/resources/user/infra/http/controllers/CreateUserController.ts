@@ -1,4 +1,4 @@
-import { CreateUserService } from "../../../services/CreateUserService";
+import { CreateUserService } from "@resources/user/services/CreateUserService";
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 

@@ -1,4 +1,4 @@
-import { IUser } from "../../../dtos/User";
+import { IUser } from "@resources/user/dtos/User";
 
 export class Users {
   public id: string;

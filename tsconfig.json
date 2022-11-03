@@ -14,7 +14,14 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@resources/*": ["resources/*"],
+      "@configs/*": ["configs/*"],
+      "@lib/*": ["lib/*"],
+      "@infra/*": ["infra/*"]
+    }
   },
   "includes": ["./src/**/*"],
   "exclude": ["jest.config.ts", "jest-setup-file.ts", "ormconfig.ts"]

@@ -1,4 +1,4 @@
-import { userRoutes } from "../../../../resources/user/infra/http/routes/index";
+import { userRoutes } from "@resources/user/infra/http/routes/index";
 import { Router } from "express";
 
 const v1Routes = Router();

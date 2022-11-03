@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import "dotenv/config";
 
-import "../lib/adapters";
+import "@lib/adapters";
 
 import express from "express";
 import morgan from "morgan";

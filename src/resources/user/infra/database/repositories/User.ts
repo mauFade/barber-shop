@@ -1,5 +1,5 @@
-import { prisma } from "../../../../../configs/prisma";
-import { IUser } from "../../../dtos/User";
+import { prisma } from "@configs/prisma";
+import { IUser } from "@resources/user/dtos/User";
 import { IUsersRepository, Users } from "../entities/User";
 
 export class UsersRepository implements IUsersRepository {
