@@ -9,13 +9,6 @@
     "rootDir": "./src",
     "strict": true,
     "strictPropertyInitialization": false,
-    "baseUrl": "./",
-    "paths": {
-      "@resources/*": ["./src/resources/*"],
-      "@infra/*": ["./src/infra/*"],
-      "@lib/*": ["./src/lib/*"],
-      "@configs/*": ["./src/configs/*"]
-    },
     "typeRoots": ["./node_modules/@types", "./src/@types"],
     "esModuleInterop": true,
     "experimentalDecorators": true,
