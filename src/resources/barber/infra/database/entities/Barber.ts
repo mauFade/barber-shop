@@ -1,7 +1,7 @@
 import { Appointment } from "@resources/appointment/infra/database/entities/Appointment";
-import { IUser } from "@resources/user/dtos/User";
+import { IBarber } from "@resources/barber/dtos/Barber";
 
-export class Users {
+export class Barber {
   public id: string;
   public name: string;
   public email: string;
@@ -17,6 +17,6 @@ export class Users {
   public deleted_count: number | null;
 }
 
-export interface IUsersRepository {
-  create(user: IUser): Promise<Users>;
+export interface IBarberRepository {
+  create(data: IBarber): Promise<Barber>;
 }
