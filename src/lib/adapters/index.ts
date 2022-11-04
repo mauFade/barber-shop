@@ -3,6 +3,10 @@ import { UsersRepository } from "../../resources/user/infra/database/repositorie
 import { container } from "tsyringe";
 import { IBarberRepository } from "@resources/barber/infra/database/entities/Barber";
 import { BarberRepository } from "@resources/barber/infra/database/repositories/Barber";
+import { IEncryptAdapter } from "./models/IEncryptAdapter";
+import { BCryptAdapter } from "./models/implementations/BCryptAdapter";
+
+container.registerSingleton<IEncryptAdapter>("EncryptAdapter", BCryptAdapter);
 
 container.registerSingleton<IUsersRepository>(
   "UsersRepository",
