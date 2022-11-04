@@ -19,4 +19,5 @@ export class Users {
 
 export interface IUsersRepository {
   create(user: IUser): Promise<Users>;
+  findbyId(id: string): Promise<Users>;
 }

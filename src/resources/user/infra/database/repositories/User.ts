@@ -22,4 +22,14 @@ export class UsersRepository implements IUsersRepository {
 
     return user;
   }
+
+  public async findbyId(id: string): Promise<Users> {
+    const user = (await prisma.user.findFirst({
+      where: {
+        id,
+      },
+    })) as Users;
+
+    return user;
+  }
 }
