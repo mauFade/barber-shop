@@ -19,4 +19,5 @@ export class Barber {
 
 export interface IBarberRepository {
   create(data: IBarber): Promise<Barber>;
+  find(): Promise<Barber[]>;
 }

@@ -28,7 +28,7 @@ export default async function EnsureAuthenticated(
       throw new CelebrateError(error.message, { celebrated: true });
     }
 
-    const [bearer, token] = authorization?.split("/") as string[];
+    const [bearer, token] = authorization?.split(" ") as string[];
 
     if (
       bearer.toLowerCase() !== "bearer" ||

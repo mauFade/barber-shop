@@ -24,4 +24,10 @@ export class BarberRepository implements IBarberRepository {
 
     return barber;
   }
+
+  public async find(): Promise<Barber[]> {
+    const barbers = (await prisma.barber.findMany()) as unknown as Barber[];
+
+    return barbers;
+  }
 }
