@@ -3,7 +3,10 @@ import { Request, Response } from "express";
 import { container } from "tsyringe";
 
 export class ListAllBarbersController {
-  public async handle(request: Request, response: Response): Promise<Response> {
+  public async handle(
+    _request: Request,
+    response: Response
+  ): Promise<Response> {
     try {
       const barbers = await container.resolve(ListAllBarbersService).execute();
 
