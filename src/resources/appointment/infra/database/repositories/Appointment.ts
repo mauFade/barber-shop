@@ -22,4 +22,15 @@ export class AppointmentRepository implements IAppointRepository {
 
     return appointment;
   }
+
+  public async find(): Promise<Appointment[]> {
+    const appointments = (await prisma.appointment.findMany({
+      include: {
+        barber: true,
+        user: true,
+      },
+    })) as Appointment[];
+
+    return appointments;
+  }
 }

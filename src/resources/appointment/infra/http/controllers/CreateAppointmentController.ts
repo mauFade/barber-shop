@@ -24,7 +24,9 @@ export class CreateAppointmentController {
 
       return response.status(201).json(data);
     } catch (error) {
-      return response.status(error.status || 500).json(error);
+      return response
+        .status(error.status || 500)
+        .json({ name: error.name, message: error.message });
     }
   }
 }

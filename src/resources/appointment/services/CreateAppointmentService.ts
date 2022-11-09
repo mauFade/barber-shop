@@ -1,4 +1,4 @@
-import { NotFoundError } from "@lib/errors";
+import { NotFoundError, UnnavailableOperationError } from "@lib/errors";
 import { IBarberRepository } from "@resources/barber/infra/database/entities/Barber";
 import { inject, injectable } from "tsyringe";
 import {
@@ -34,6 +34,12 @@ export class CreateAppointmentService {
 
     if (!barber) {
       throw new NotFoundError("Barber not found.");
+    }
+
+    if (!barber.specialty.includes(type)) {
+      throw new UnnavailableOperationError(
+        "This barber does not have this specialty. Select another haircut type or barber."
+      );
     }
 
     const appointment = await this.appointmentsRepository.create({
