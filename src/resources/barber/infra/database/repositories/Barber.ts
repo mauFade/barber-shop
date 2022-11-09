@@ -30,4 +30,14 @@ export class BarberRepository implements IBarberRepository {
 
     return barbers;
   }
+
+  public async findById(id: string): Promise<Barber | undefined> {
+    const barber = (await prisma.barber.findFirst({
+      where: {
+        id,
+      },
+    })) as unknown as Barber | undefined;
+
+    return barber;
+  }
 }

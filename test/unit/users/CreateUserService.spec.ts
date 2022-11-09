@@ -5,8 +5,8 @@ import { container } from "tsyringe";
 import { test, expect, describe } from "vitest";
 
 test("users", () => {
-  describe("Create users", async () => {
-    const userService = await container.resolve(CreateUserService);
+  describe("Create user", async () => {
+    const userService = container.resolve(CreateUserService);
 
     const user = await userService.execute({
       name: "Test",

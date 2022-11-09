@@ -12,8 +12,7 @@ export class ListAllBarbersController {
 
       return response.status(200).json(barbers);
     } catch (error) {
-      console.log("caiu no catch");
-      return response.status(error.status).json(error);
+      return response.status(error.status || 500).json(error);
     }
   }
 }

@@ -5,9 +5,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify ./src/infra/server.ts",
-    "start": "node ./dist/src/infra/server.js",
+    "start": "node ./dist/infra/server.js",
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
-    "test": "vitest"
+    "test": "vitest run"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",

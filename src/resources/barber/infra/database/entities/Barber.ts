@@ -8,6 +8,7 @@ export class Barber {
   public cellphone: string;
   public password: string;
   public instagram: string | null;
+  public specialty: string[];
 
   public appointments: Appointment[];
 
@@ -20,4 +21,5 @@ export class Barber {
 export interface IBarberRepository {
   create(data: IBarber): Promise<Barber>;
   find(): Promise<Barber[]>;
+  findById(id: string): Promise<Barber | undefined>;
 }

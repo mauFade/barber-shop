@@ -18,7 +18,9 @@ export class AuthenticateController {
 
       return response.status(200).json(data);
     } catch (error) {
-      return response.status(error.status).json({ message: error.message });
+      return response
+        .status(error.status || 403)
+        .json({ message: error.message });
     }
   }
 }
