@@ -33,12 +33,22 @@ export class UsersRepository implements IUsersRepository {
     return user;
   }
 
-  public async findByEmail(email: string): Promise<Users> {
+  public async findByEmail(email: string): Promise<Users | undefined> {
     const user = (await prisma.user.findFirst({
       where: {
         email,
       },
-    })) as Users;
+    })) as Users | undefined;
+
+    return user;
+  }
+
+  public async findByCellphone(phone: string): Promise<Users | undefined> {
+    const user = (await prisma.user.findFirst({
+      where: {
+        cellphone: phone,
+      },
+    })) as Users | undefined;
 
     return user;
   }

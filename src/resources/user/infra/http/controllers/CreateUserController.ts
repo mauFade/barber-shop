@@ -15,14 +15,20 @@ export class CreateUserController {
     const { name, email, password, cellphone, instagram }: IRequest =
       request.body;
 
-    const user = await container.resolve(CreateUserService).execute({
-      name,
-      email,
-      cellphone,
-      password,
-      instagram,
-    });
+    try {
+      const user = await container.resolve(CreateUserService).execute({
+        name,
+        email,
+        cellphone,
+        password,
+        instagram,
+      });
 
-    return response.status(200).json(user);
+      return response.status(201).json(user);
+    } catch (error) {
+      return response
+        .status(error.status || 500)
+        .json({ error: error.type, message: error.message });
+    }
   }
 }

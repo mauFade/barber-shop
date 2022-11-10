@@ -3,6 +3,7 @@ import {
   IUsersRepository,
   Users,
 } from "@resources/user/infra/database/entities/User";
+import { AlreadyExistsError } from "@lib/errors";
 
 interface IRequest {
   name: string;
@@ -26,6 +27,20 @@ export class CreateUserService {
     password,
     instagram,
   }: IRequest): Promise<Users> {
+    const emailAlreadyExists = await this.usersRepository.findByEmail(email);
+
+    const cellphoneAlreadyExists = await this.usersRepository.findByCellphone(
+      cellphone
+    );
+
+    if (emailAlreadyExists) {
+      throw new AlreadyExistsError("Email already exists.");
+    }
+
+    if (cellphoneAlreadyExists) {
+      throw new AlreadyExistsError("Cellphone already exists.");
+    }
+
     const user = await this.usersRepository.create({
       name,
       email,

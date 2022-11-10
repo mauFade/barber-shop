@@ -63,3 +63,15 @@ export class UnnavailableOperationError extends Error {
     this.status = 401;
   }
 }
+
+export class AlreadyExistsError extends Error {
+  public type: string;
+  public status: number;
+  constructor(message: string) {
+    super(message);
+
+    this.name = "AlreadyExists";
+    this.type = "FIELD_ALREADY_EXISTS";
+    this.status = 409;
+  }
+}
