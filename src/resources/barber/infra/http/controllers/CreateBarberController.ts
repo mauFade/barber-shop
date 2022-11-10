@@ -16,10 +16,16 @@ export class CreateBarberController {
     const { name, email, cellphone, password, specialty, instagram }: IRequest =
       request.body;
 
-    const data = await container
-      .resolve(CreateBarberService)
-      .execute({ name, email, cellphone, password, specialty, instagram });
+    try {
+      const data = await container
+        .resolve(CreateBarberService)
+        .execute({ name, email, cellphone, password, specialty, instagram });
 
-    return response.status(201).json(data);
+      return response.status(201).json(data);
+    } catch (error) {
+      return response
+        .status(error.status || 500)
+        .json({ error: error.type, message: error.message });
+    }
   }
 }

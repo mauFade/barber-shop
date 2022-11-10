@@ -20,13 +20,13 @@ export class BarberRepository implements IBarberRepository {
         specialty,
         instagram,
       },
-    })) as unknown as Barber;
+    })) as Barber;
 
     return barber;
   }
 
   public async find(): Promise<Barber[]> {
-    const barbers = (await prisma.barber.findMany()) as unknown as Barber[];
+    const barbers = (await prisma.barber.findMany()) as Barber[];
 
     return barbers;
   }
@@ -36,7 +36,31 @@ export class BarberRepository implements IBarberRepository {
       where: {
         id,
       },
-    })) as unknown as Barber | undefined;
+    })) as Barber | undefined;
+
+    return barber;
+  }
+
+  public async findByEmail(email: string): Promise<Barber | undefined> {
+    const barber = (await prisma.barber.findFirst({
+      where: { email },
+    })) as Barber | undefined;
+
+    return barber;
+  }
+
+  public async findByCellphone(phone: string): Promise<Barber | undefined> {
+    const barber = (await prisma.barber.findFirst({
+      where: { cellphone: phone },
+    })) as Barber | undefined;
+
+    return barber;
+  }
+
+  public async findInstagram(instagram: string): Promise<Barber | undefined> {
+    const barber = (await prisma.barber.findFirst({
+      where: { instagram },
+    })) as Barber | undefined;
 
     return barber;
   }

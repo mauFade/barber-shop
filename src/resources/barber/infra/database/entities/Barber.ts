@@ -22,4 +22,7 @@ export interface IBarberRepository {
   create(data: IBarber): Promise<Barber>;
   find(): Promise<Barber[]>;
   findById(id: string): Promise<Barber | undefined>;
+  findByEmail(email: string): Promise<Barber | undefined>;
+  findByCellphone(phone: string): Promise<Barber | undefined>;
+  findInstagram(instagram: string): Promise<Barber | undefined>;
 }
