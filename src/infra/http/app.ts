@@ -5,6 +5,7 @@ import cors from "cors";
 import httpLogger from "@lib/logger/htt-logger";
 import { v1Routes } from "./api/routes/v1";
 import { errors } from "celebrate";
+import { Logger } from "@lib/logger/logger";
 
 export class App {
   private server: Server;
@@ -45,6 +46,6 @@ export class App {
   public listen(port: number): void {
     this.server.listen(port);
 
-    console.info(`App run in portt ${port}`);
+    Logger.info(`App run in port ${port}`);
   }
 }
