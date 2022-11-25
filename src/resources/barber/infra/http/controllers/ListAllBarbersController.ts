@@ -7,12 +7,8 @@ export class ListAllBarbersController {
     _request: Request,
     response: Response
   ): Promise<Response> {
-    try {
-      const barbers = await container.resolve(ListAllBarbersService).execute();
+    const barbers = await container.resolve(ListAllBarbersService).execute();
 
-      return response.status(200).json(barbers);
-    } catch (error) {
-      return response.status(error.status || 500).json(error);
-    }
+    return response.status(200).json(barbers);
   }
 }

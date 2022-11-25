@@ -11,12 +11,13 @@ datasource db {
 }
 
 model User {
-  id        String  @id @default(uuid())
-  name      String
-  email     String  @unique
-  cellphone String  @unique
-  password  String
-  instagram String? @unique
+  id         String    @id @default(uuid())
+  name       String
+  email      String    @unique
+  cellphone  String    @unique
+  password   String
+  instagram  String?   @unique
+  last_login DateTime?
 
   appointments Appointment[]
 
@@ -27,13 +28,14 @@ model User {
 }
 
 model Barber {
-  id        String   @id @default(uuid())
-  name      String
-  email     String   @unique
-  cellphone String   @unique
-  password  String
-  instagram String?  @unique
-  specialty String[]
+  id         String    @id @default(uuid())
+  name       String
+  email      String    @unique
+  cellphone  String    @unique
+  password   String
+  instagram  String?   @unique
+  last_login DateTime?
+  specialty  String[]
 
   appointments Appointment[]
 

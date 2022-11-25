@@ -8,6 +8,7 @@ export class Users {
   public cellphone: string;
   public password: string;
   public instagram: string | null;
+  public last_login: Date | null;
 
   public appointments: Appointment[];
 
@@ -20,6 +21,8 @@ export class Users {
 export interface IUsersRepository {
   create(user: IUser): Promise<Users>;
   findbyId(id: string): Promise<Users>;
+  save(user: Users): Promise<Users>;
   findByEmail(email: string): Promise<Users | undefined>;
   findByCellphone(phone: string): Promise<Users | undefined>;
+  findByInstagram(instagram: string): Promise<Users | undefined>;
 }

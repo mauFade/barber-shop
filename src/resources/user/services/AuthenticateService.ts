@@ -38,6 +38,10 @@ export class AuthenticateService {
       throw new AuthenticateError("Invalid password.");
     }
 
+    user.last_login = new Date();
+
+    await this.usersRepository.save(user);
+
     const tokenValidator = await this.encryptAdapter.create(
       auth.users.token_validator
     );

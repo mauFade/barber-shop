@@ -9,6 +9,7 @@ export class Barber {
   public password: string;
   public instagram: string | null;
   public specialty: string[];
+  public last_login: Date | null;
 
   public appointments: Appointment[];
 

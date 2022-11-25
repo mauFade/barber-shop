@@ -33,6 +33,16 @@ export class CreateUserService {
       cellphone
     );
 
+    if (instagram) {
+      const instaAlreadyExists = await this.usersRepository.findByInstagram(
+        instagram
+      );
+
+      if (instaAlreadyExists) {
+        throw new AlreadyExistsError("This instagram is already in use.");
+      }
+    }
+
     if (emailAlreadyExists) {
       throw new AlreadyExistsError("Email already exists.");
     }
