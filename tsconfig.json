@@ -15,14 +15,19 @@
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@resources/*": ["resources/*"],
-      "@configs/*": ["configs/*"],
-      "@lib/*": ["lib/*"],
-      "@infra/*": ["infra/*"]
+      "@resources/*": ["./src/resources/*"],
+      "@configs/*": ["./src/configs/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@infra/*": ["./src/infra/*"]
     }
   },
   "includes": ["./src/**/*"],
-  "exclude": ["jest.config.ts", "jest-setup-file.ts", "ormconfig.ts"]
+  "exclude": [
+    "jest.config.ts",
+    "jest-setup-file.ts",
+    "ormconfig.ts",
+    "./test/**/*.spec.ts"
+  ]
 }
