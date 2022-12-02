@@ -24,10 +24,5 @@
     }
   },
   "includes": ["./src/**/*"],
-  "exclude": [
-    "jest.config.ts",
-    "jest-setup-file.ts",
-    "ormconfig.ts",
-    "./test/**/*.spec.ts"
-  ]
+  "exclude": ["jest.config.ts", "jest-setup-file.ts", "ormconfig.ts"]
 }

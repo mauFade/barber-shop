@@ -22,6 +22,7 @@ export interface IUsersRepository {
   create(user: IUser): Promise<Users>;
   findbyId(id: string): Promise<Users>;
   save(user: Users): Promise<Users>;
+  delete(userId: string): Promise<void>;
   findByEmail(email: string): Promise<Users | undefined>;
   findByCellphone(phone: string): Promise<Users | undefined>;
   findByInstagram(instagram: string): Promise<Users | undefined>;
