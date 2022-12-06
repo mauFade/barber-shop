@@ -15,4 +15,6 @@ export class Appointment {
 export interface IAppointRepository {
   create(data: IAppointment): Promise<Appointment>;
   find(): Promise<Appointment[]>;
+  findById(appointmentId: string): Promise<Appointment | undefined>;
+  save(appointment: Appointment): Promise<Appointment>;
 }

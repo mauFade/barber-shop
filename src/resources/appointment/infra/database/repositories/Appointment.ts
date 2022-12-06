@@ -33,4 +33,34 @@ export class AppointmentRepository implements IAppointRepository {
 
     return appointments;
   }
+
+  public async findById(
+    appointmentId: string
+  ): Promise<Appointment | undefined> {
+    const appointment = (await prisma.appointment.findFirst({
+      where: { id: appointmentId },
+    })) as Appointment | undefined;
+
+    return appointment;
+  }
+
+  public async save({
+    barber_id,
+    id,
+    price,
+    time,
+    type,
+  }: Appointment): Promise<Appointment> {
+    const appointment = (await prisma.appointment.update({
+      where: { id },
+      data: {
+        barber_id,
+        price,
+        time,
+        type,
+      },
+    })) as Appointment;
+
+    return appointment;
+  }
 }
