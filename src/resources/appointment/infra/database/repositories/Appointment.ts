@@ -50,6 +50,7 @@ export class AppointmentRepository implements IAppointRepository {
     price,
     time,
     type,
+    deleted_at,
   }: Appointment): Promise<Appointment> {
     const appointment = (await prisma.appointment.update({
       where: { id },
@@ -58,6 +59,7 @@ export class AppointmentRepository implements IAppointRepository {
         price,
         time,
         type,
+        deleted_at,
       },
     })) as Appointment;
 
