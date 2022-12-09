@@ -6,9 +6,12 @@ import {
 import { CreateUserService } from "@resources/user/services/CreateUserService";
 import { UsersRepository } from "@resources/user/infra/database/repositories/User";
 import { DeleteUserService } from "@resources/user/services/DeleteUserService";
+import { IEncryptAdapter } from "@lib/adapters/models/IEncryptAdapter";
+import { BCryptAdapter } from "@lib/adapters/models/implementations/BCryptAdapter";
 
 let createUserService: CreateUserService;
 let deleteUsersService: DeleteUserService;
+let encryptAdapter: IEncryptAdapter;
 
 let usersRepository: IUsersRepository;
 
@@ -17,8 +20,9 @@ let user: Users;
 describe("CreateUserService", () => {
   beforeEach(async () => {
     usersRepository = new UsersRepository();
+    encryptAdapter = new BCryptAdapter();
 
-    createUserService = new CreateUserService(usersRepository);
+    createUserService = new CreateUserService(usersRepository, encryptAdapter);
   });
 
   afterEach(async () => {

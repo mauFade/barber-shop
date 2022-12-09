@@ -31,10 +31,10 @@ export class AuthenticateService {
     const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
-      throw new NotFoundError("User not found.");
+      throw new NotFoundError("Invalid e-mail.");
     }
 
-    if (password !== user.password) {
+    if (!(await this.encryptAdapter.compare(password, user.password))) {
       throw new AuthenticateError("Invalid password.");
     }
 
@@ -46,7 +46,7 @@ export class AuthenticateService {
       auth.users.token_validator
     );
 
-    const output = {
+    return {
       name: user.name,
       email: user.email,
       phone: user.cellphone,
@@ -65,8 +65,6 @@ export class AuthenticateService {
           expiresIn: auth.users.expiresIn,
         }
       ),
-    } as IResponse;
-
-    return output;
+    };
   }
 }

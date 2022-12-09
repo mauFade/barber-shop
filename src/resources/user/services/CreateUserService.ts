@@ -1,9 +1,7 @@
 import { injectable, inject } from "tsyringe";
-import {
-  IUsersRepository,
-  Users,
-} from "@resources/user/infra/database/entities/User";
+import { IUsersRepository } from "@resources/user/infra/database/entities/User";
 import { AlreadyExistsError } from "@lib/errors";
+import { IEncryptAdapter } from "@lib/adapters/models/IEncryptAdapter";
 
 interface IRequest {
   name: string;
@@ -13,11 +11,22 @@ interface IRequest {
   instagram?: string;
 }
 
+interface IResponse {
+  id: string;
+  name: string;
+  email: string;
+  cellphone: string;
+  instagram: string | null;
+  created_at: Date;
+}
+
 @injectable()
 export class CreateUserService {
   constructor(
     @inject("UsersRepository")
-    private usersRepository: IUsersRepository
+    private usersRepository: IUsersRepository,
+    @inject("EncryptAdapter")
+    private encryptAdapter: IEncryptAdapter
   ) {}
 
   public async execute({
@@ -26,7 +35,7 @@ export class CreateUserService {
     cellphone,
     password,
     instagram,
-  }: IRequest): Promise<Users> {
+  }: IRequest): Promise<IResponse> {
     const emailAlreadyExists = await this.usersRepository.findByEmail(email);
 
     const cellphoneAlreadyExists = await this.usersRepository.findByCellphone(
@@ -51,14 +60,23 @@ export class CreateUserService {
       }
     }
 
+    const hash = await this.encryptAdapter.create(password);
+
     const user = await this.usersRepository.create({
       name,
       email,
       cellphone,
-      password,
+      password: hash,
       instagram,
     });
 
-    return user;
+    return {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      cellphone: user.cellphone,
+      instagram: user.instagram,
+      created_at: user.created_at,
+    };
   }
 }
