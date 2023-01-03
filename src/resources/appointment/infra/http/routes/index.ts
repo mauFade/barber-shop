@@ -1,4 +1,7 @@
 import { Router } from "express";
+import { createAppointmentValidator } from "../../validators/CreateAppointmentValidator";
+import { softDeleteAppointmentValidator } from "../../validators/SoftDeleteAppointmentValidator";
+import { updateAppointmentBarberValidator } from "../../validators/UpdateAppointmentBarberValidator";
 import { CreateAppointmentController } from "../controllers/CreateAppointmentController";
 import { ListAllAppointmentController } from "../controllers/ListAllAppointmentsController";
 import { SoftDeleteAppointmentController } from "../controllers/SoftDeleteAppointmentController";
@@ -12,14 +15,23 @@ const updateAppointmentBarberController =
   new UpdateAppointmentBarberController();
 const softDeleteAppointmentController = new SoftDeleteAppointmentController();
 
-appointmentRoutes.post("/create", createAppointmentController.handle);
+appointmentRoutes.post(
+  "/create",
+  createAppointmentValidator,
+  createAppointmentController.handle
+);
 
 appointmentRoutes.get("/list", listAllController.handle);
 
-appointmentRoutes.patch("/barber", updateAppointmentBarberController.handle);
+appointmentRoutes.patch(
+  "/barber",
+  updateAppointmentBarberValidator,
+  updateAppointmentBarberController.handle
+);
 
 appointmentRoutes.delete(
   "/:appointmentId",
+  softDeleteAppointmentValidator,
   softDeleteAppointmentController.handle
 );
 
